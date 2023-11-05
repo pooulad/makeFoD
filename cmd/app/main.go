@@ -9,7 +9,6 @@ func checkError(e error) {
 	if e != nil {
 		panic(e)
 	}
-
 }
 
 func main() {
@@ -17,14 +16,19 @@ func main() {
 	dir := "natas"
 	fileName := "README"
 	extention := "md"
-	for i := 1; i < count+1; i++ {
-		fmt.Println(fmt.Sprint(dir, i))
-		os.Mkdir(fmt.Sprint(dir, i), 0777)
-		f, err := os.Create(fmt.Sprintf("./%v/%v.%v", fmt.Sprint(dir, i), fileName, extention))
-		checkError(err)
-		fmt.Println("new file created")
-		fmt.Println(f)
 
+	for i := 1; i < count+1; i++ {
+		dirName := fmt.Sprint(dir, i)
+		os.Mkdir(dirName, 0777)
+		// checkError(err)
+
+		f, err := os.Create(fmt.Sprintf("./%v/%v.%v", dirName, fileName, extention))
+		checkError(err)
+
+		_, err = f.Write([]byte(fmt.Sprintf("# %v", dirName)))
+		checkError(err)
+
+		fmt.Println("new file created")
 		defer f.Close()
 	}
 }
