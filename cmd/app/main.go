@@ -14,8 +14,10 @@ func checkError(e error) {
 
 func main() {
 	count := 20
+	dir := "temp"
+	os.Mkdir(dir, 0777)
 	for i := 0; i < count; i++ {
-		f, err := os.Create(fmt.Sprintf("file%v.txt", i))
+		f, err := os.Create(fmt.Sprintf("./temp/file%v.txt", i))
 		checkError(err)
 		fmt.Println("hello go again...")
 		fmt.Println(f)
