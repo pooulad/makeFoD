@@ -13,16 +13,18 @@ func checkError(e error) {
 }
 
 func main() {
-	count := 20
-	dir := "temp"
-	os.Mkdir(dir, 0777)
-	for i := 0; i < count+1; i++ {
-		os.Mkdir(fmt.Sprint(i), 0777)
-		f, err := os.Create(fmt.Sprintf("./temp/file%v.txt", i))
+	count := 4
+	dir := "natas"
+	fileName := "README"
+	extention := "md"
+	for i := 1; i < count+1; i++ {
+		fmt.Println(fmt.Sprint(dir, i))
+		os.Mkdir(fmt.Sprint(dir, i), 0777)
+		f, err := os.Create(fmt.Sprintf("./%v/%v.%v", fmt.Sprint(dir, i), fileName, extention))
 		checkError(err)
-		fmt.Println("hello go again...")
+		fmt.Println("new file created")
 		fmt.Println(f)
 
-		// defer f.Close()
+		defer f.Close()
 	}
 }
