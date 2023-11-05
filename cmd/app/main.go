@@ -8,10 +8,8 @@ import (
 )
 
 func main() {
-	count := 4
-	dir := "natas"
-	fileName := "README"
-	extention := "md"
+	flag, err := pkg.ReadFlag()
+	util.CheckError(err)
 
 	for i := 1; i < count+1; i++ {
 		dirName := fmt.Sprint(dir, i)
