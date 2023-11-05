@@ -2,14 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
-)
 
-func checkError(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
+	"github.com/pooulad/makeFoD/pkg"
+	"github.com/pooulad/makeFoD/util"
+)
 
 func main() {
 	count := 4
