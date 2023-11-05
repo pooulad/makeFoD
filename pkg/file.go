@@ -21,3 +21,18 @@ func NewMakeFoD(f *FlagReturns) *MakeFoD {
 	}
 }
 
+func (m *MakeFoD) CreateMultiDirectoriesWithOneFile() error {
+	for i := 1; i < m.dnumber+1; i++ {
+		dirName := fmt.Sprint(m.dirName, i)
+		os.Mkdir(dirName, 0777)
+
+		f, err := os.Create(fmt.Sprintf("./%v/%v", dirName, m.fileName))
+		if err != nil {
+			return err
+		}
+
+		defer f.Close()
+	}
+
+	return nil
+}
