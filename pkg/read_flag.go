@@ -6,14 +6,16 @@ import (
 )
 
 type FlagReturns struct {
-	DirName  string
-	FileName string
-	DNumber  int
-	FNumber  int
+	Extention string
+	DirName   string
+	FileName  string
+	DNumber   int
+	FNumber   int
 }
 
 func ReadFlag() (*FlagReturns, error) {
 	fr := FlagReturns{}
+	flag.StringVar(&fr.Extention, "e", "", "get file format")
 	flag.StringVar(&fr.FileName, "f", "", "get file name")
 	flag.StringVar(&fr.DirName, "d", "", "get directory name")
 	flag.IntVar(&fr.DNumber, "dn", 0, "get number of directories for create")
@@ -22,21 +24,25 @@ func ReadFlag() (*FlagReturns, error) {
 
 	if fr.FileName == "" {
 		if fr.DirName == "" {
-			return nil, errors.New("please enter file or directory name")
+			return nil, errors.New("please enter file or directory name [-f or --f] or [-d or --d]")
 		}
 	} else {
 		if fr.FNumber == 0 {
-			return nil, errors.New("please enter file number to generate")
+			return nil, errors.New("please enter file number to generate [-fn or --fn]")
 		}
 	}
 
 	if fr.DirName == "" {
 		if fr.FileName == "" {
-			return nil, errors.New("please enter file or directory name")
+			return nil, errors.New("please enter file or directory name [-f or --f] or [-d or --d]")
+		} else {
+			if fr.Extention == "" {
+				return nil, errors.New("please enter file format with tag [-e or --e]")
+			}
 		}
 	} else {
 		if fr.DNumber == 0 {
-			return nil, errors.New("please enter directory number to generate")
+			return nil, errors.New("please enter directory number to generate [-dn or --dn]")
 		}
 	}
 
