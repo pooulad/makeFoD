@@ -44,6 +44,13 @@ func ReadFlag() (*FlagReturns, error) {
 		if fr.DNumber == 0 {
 			return nil, errors.New("please enter directory number to generate [-dn or --dn]")
 		}
+		if fr.FileName == "" {
+			return nil, errors.New("please enter file or directory name [-f or --f] or [-d or --d]")
+		} else {
+			if fr.Extention == "" {
+				return nil, errors.New("please enter file format with tag [-e or --e]")
+			}
+		}
 	}
 
 	return &fr, nil
