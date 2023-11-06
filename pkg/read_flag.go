@@ -21,7 +21,23 @@ func ReadFlag() (*FlagReturns, error) {
 	flag.Parse()
 
 	if fr.FileName == "" {
-		return nil, errors.New("please enter a valid file address")
+		if fr.DirName == "" {
+			return nil, errors.New("please enter file or directory name")
+		}
+	} else {
+		if fr.FNumber == 0 {
+			return nil, errors.New("please enter file number to generate")
+		}
+	}
+
+	if fr.DirName == "" {
+		if fr.FileName == "" {
+			return nil, errors.New("please enter file or directory name")
+		}
+	} else {
+		if fr.DNumber == 0 {
+			return nil, errors.New("please enter directory number to generate")
+		}
 	}
 
 	return &fr, nil
