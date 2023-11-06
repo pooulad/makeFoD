@@ -18,17 +18,18 @@ func main() {
 		if err != nil {
 			util.FatalError(err)
 		}
-	}
-	if flag.FileName == "" {
-		err = f.CreateMultiFiles()
-		if err != nil {
-			util.FatalError(err)
+	} else {
+		if flag.FileName == "" {
+			err = f.CreateMultiEmptyDirectories()
+			if err != nil {
+				util.FatalError(err)
+			}
+		} else {
+			err = f.CreateMultiDirectoriesWithFile()
+			if err != nil {
+				util.FatalError(err)
+			}
 		}
-	}
-	
-	err = f.CreateMultiDirectoriesWithOneFile()
-	if err != nil {
-		util.PanicError(err)
 	}
 
 	fmt.Println(flag)
