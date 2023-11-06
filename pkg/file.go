@@ -45,3 +45,16 @@ func (m *MakeFoD) CreateMultiEmptyDirectories() error {
 
 	return nil
 }
+
+func (m *MakeFoD) CreateMultiFiles() error {
+	for i := 1; i < m.fnumber+1; i++ {
+		f, err := os.Create(fmt.Sprintf("./%v%v", m.fileName, i))
+		if err != nil {
+			return err
+		}
+
+		defer f.Close()
+	}
+
+	return nil
+}
