@@ -9,12 +9,12 @@ import (
 
 func main() {
 	flag, err := pkg.ReadFlag()
-	util.CheckError(err)
+	util.FatalError(err)
 
 	f := pkg.NewMakeFoD(flag)
 	err = f.CreateMultiDirectoriesWithOneFile()
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(true)
+	fmt.Println(flag)
 }
