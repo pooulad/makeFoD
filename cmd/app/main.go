@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 
 	"github.com/pooulad/makeFoD/pkg"
 	"github.com/pooulad/makeFoD/util"
@@ -32,6 +31,5 @@ func main() {
 		}
 	}
 
-	fmt.Println(flag)
-	fmt.Println("ALL DONE SUCCESSFULY🦥")
+	util.ColorGenerator(util.ColorGreen, "ALL DONE SUCCESSFULY🦥")
 }
