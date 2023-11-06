@@ -50,7 +50,7 @@ func (m *MakeFoD) CreateMultiEmptyDirectories() error {
 
 func (m *MakeFoD) CreateMultiFiles() error {
 	for i := 1; i < m.fnumber+1; i++ {
-		f, err := os.Create(fmt.Sprintf("./%v%v/%v", m.fileName, i, m.extention))
+		f, err := os.Create(fmt.Sprintf("./%v%v.%v", m.fileName, i, m.extention))
 		if err != nil {
 			return err
 		}
